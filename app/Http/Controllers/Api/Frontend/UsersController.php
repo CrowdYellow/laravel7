@@ -14,9 +14,7 @@ class UsersController extends Controller
         $user = User::create([
             'name'     => $request->name,
             'phone'    => $request->phone,
-            'email'    => $request->email,
             'password' => $request->password,
-            'avatar'   => 'email',
         ]);
 
         return new UserResource($user);
