@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Api\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Frontend\AuthorizationRequest;
-use App\Http\Requests\Api\Frontend\SocialAuthorizationRequest;
 use App\Models\User;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Auth\AuthenticationException;
+use App\Http\Requests\Api\Frontend\AuthorizationRequest;
+use App\Http\Requests\Api\Frontend\SocialAuthorizationRequest;
 
 class AuthorizationsController extends Controller
 {
