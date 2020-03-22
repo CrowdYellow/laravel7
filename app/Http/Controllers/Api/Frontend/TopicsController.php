@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Frontend;
 
 use App\Http\Controllers\Api\Controller;
+use App\Http\Queries\TopicQuery;
 use App\Http\Requests\Api\Frontend\TopicRequest;
 use App\Http\Resources\TopicResource;
 use App\Models\Topic;
@@ -47,6 +48,12 @@ class TopicsController extends Controller
         $topic->user_id = $request->user()->id;
         $topic->save();
 
+        return new TopicResource($topic);
+    }
+
+    public function show($topicId, TopicQuery $query)
+    {
+        $topic = $query->findOrFail($topicId);
         return new TopicResource($topic);
     }
 
