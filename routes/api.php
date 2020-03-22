@@ -46,6 +46,12 @@ Route::prefix('v1/frontend')
                 // 某个用户发布的话题
                 Route::get('users/{user}/topics', 'TopicsController@userIndex')
                     ->name('users.topics.index');
+                // 话题回复列表
+                Route::get('topics/{topic}/comments', 'CommentsController@index')
+                    ->name('topics.comments.index');
+                // 某个用户的回复列表
+                Route::get('users/{user}/comments', 'CommentsController@userIndex')
+                    ->name('users.comments.index');
 
                 // 登录后可以访问的接口
                 Route::middleware('api.refresh')->group(function() {

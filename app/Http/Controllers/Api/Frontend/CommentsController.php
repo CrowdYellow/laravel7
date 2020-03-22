@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Queries\CommentQuery;
 use App\Http\Requests\Api\Frontend\CommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
@@ -11,6 +12,20 @@ use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
+    public function index($topicId, CommentQuery $query)
+    {
+        $replies = $query->where('topic_id', $topicId)->paginate();
+
+        return CommentResource::collection($replies);
+    }
+
+    public function userIndex($userId, CommentQuery $query)
+    {
+        $replies = $query->where('user_id', $userId)->paginate();
+
+        return CommentResource::collection($replies);
+    }
+
     public function store(CommentRequest $request, Topic $topic, Comment $comment)
     {
         $comment->text = $request->text;
