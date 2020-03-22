@@ -14,4 +14,9 @@ class TopicPolicy
     {
         return $user->isAuthorOf($article);
     }
+
+    public function destroy(User $user, Topic $topic)
+    {
+        return $user->isAuthorOf($topic);
+    }
 }
