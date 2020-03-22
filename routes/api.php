@@ -56,6 +56,9 @@ Route::prefix('v1/frontend')
                     Route::resource('topics', 'TopicsController')->only([
                         'store', 'update', 'destroy'
                     ]);
+                    // 发布回复
+                    Route::post('topics/{topic}/comments', 'CommentsController@store')
+                        ->name('topics.comments.store');
                 });
             });
     });
