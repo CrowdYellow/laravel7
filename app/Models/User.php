@@ -44,6 +44,12 @@ class User extends Authenticatable implements JWTSubject
     {
         $this->attributes['password'] = bcrypt($value);
     }
+    # 模型关联 start
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
+    # 模型关联 end
 
     public function isAuthorOf($model)
     {
