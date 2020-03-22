@@ -49,6 +49,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Topic::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
     # 模型关联 end
 
     public function isAuthorOf($model)

@@ -19,5 +19,10 @@ class Topic extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
     # 模型关联 end
 }
