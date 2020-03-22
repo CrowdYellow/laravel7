@@ -59,6 +59,9 @@ Route::prefix('v1/frontend')
                     // 发布回复
                     Route::post('topics/{topic}/comments', 'CommentsController@store')
                         ->name('topics.comments.store');
+                    // 删除回复
+                    Route::delete('topics/{topic}/comments/{comment}', 'CommentsController@destroy')
+                        ->name('topics.comments.destroy');
                 });
             });
     });

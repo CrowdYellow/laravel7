@@ -20,4 +20,16 @@ class CommentsController extends Controller
 
         return new CommentResource($comment);
     }
+
+    public function destroy(Topic $topic, Comment $comment)
+    {
+        if ($comment->topic_id != $topic->id) {
+            abort(404);
+        }
+
+        $this->authorize('destroy', $comment);
+        $comment->delete();
+
+        return response(null, 204);
+    }
 }
