@@ -71,6 +71,9 @@ Route::prefix('v1/frontend')
                     // 通知列表
                     Route::get('notifications', 'NotificationsController@index')
                         ->name('notifications.index');
+                    // 通知统计
+                    Route::get('notifications/stats', 'NotificationsController@stats')
+                        ->name('notifications.stats');
                 });
             });
     });
