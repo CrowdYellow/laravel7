@@ -9,9 +9,7 @@ class CommentObserver
 {
     public function created(Comment $comment)
     {
-        $comment->topic->comment_count = $comment->topic->comments->count();
-        $comment->topic->save();
-
+        $comment->topic->updateCommentCount();
         // 通知话题作者有新的评论
         $comment->topic->user->notify(new TopicComment($comment));
     }

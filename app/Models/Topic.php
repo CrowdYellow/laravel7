@@ -25,4 +25,10 @@ class Topic extends Model
         return $this->hasMany(Comment::class);
     }
     # 模型关联 end
+
+    public function updateCommentCount()
+    {
+        $this->comment_count = $this->comments->count();
+        $this->save();
+    }
 }
