@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->default('');
             $table->string('weixin_openid')->unique()->nullable();
             $table->string('weixin_unionid')->unique()->nullable();
+            $table->integer('notification_count')->unsigned()->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

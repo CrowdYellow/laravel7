@@ -27,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
         JsonResource::withoutWrapping();
 
         \App\Models\Topic::observe(\App\Observers\TopicObserver::class);
+        \App\Models\Comment::observe(\App\Observers\CommentObserver::class);
     }
 }
