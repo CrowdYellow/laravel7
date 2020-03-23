@@ -68,6 +68,9 @@ Route::prefix('v1/frontend')
                     // 删除回复
                     Route::delete('topics/{topic}/comments/{comment}', 'CommentsController@destroy')
                         ->name('topics.comments.destroy');
+                    // 通知列表
+                    Route::get('notifications', 'NotificationsController@index')
+                        ->name('notifications.index');
                 });
             });
     });

@@ -42,7 +42,7 @@ class TopicComment extends Notification
         // 存入数据库里的数据
         return [
             'comment_id'      => $this->comment->id,
-            'comment_content' => $this->comment->content,
+            'comment_content' => $this->comment->text,
             'user_id'         => $this->comment->user->id,
             'user_name'       => $this->comment->user->name,
             'user_avatar'     => $this->comment->user->avatar,
