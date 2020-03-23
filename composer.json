@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
+        "mews/purifier": "^3.2",
         "overtrue/easy-sms": "^1.1",
         "socialiteproviders/github": "dev-master",
         "socialiteproviders/weixin": "^4.0",
@@ -31,7 +32,8 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "secure-http": false
     },
     "extra": {
         "laravel": {

@@ -25,5 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         JsonResource::withoutWrapping();
+
+        \App\Models\Topic::observe(\App\Observers\TopicObserver::class);
     }
 }
