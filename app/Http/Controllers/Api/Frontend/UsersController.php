@@ -29,12 +29,15 @@ class UsersController extends Controller
             'name'     => $request->name,
             'phone'    => $verifyData['phone'],
             'password' => $request->password,
+            'avatar'   => $request->avatar ?? '/icon.png',
         ]);
 
         // 清除验证码缓存
         Cache::forget($request->verification_key);
 
-        return new UserResource($user);
+        $token = auth('api')->login($user);
+
+        return response(new UserResource($user))->withHeaders(['token' => $token]);
     }
 
     public function show(User $user, Request $request)
