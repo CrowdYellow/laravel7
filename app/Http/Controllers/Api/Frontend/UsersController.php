@@ -37,7 +37,7 @@ class UsersController extends Controller
 
         $token = auth('api')->login($user);
 
-        return response(new UserResource($user))->withHeaders(['token' => $token]);
+        return new UserResource($user);
     }
 
     public function show(User $user, Request $request)

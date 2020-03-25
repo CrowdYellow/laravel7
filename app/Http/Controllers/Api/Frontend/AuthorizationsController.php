@@ -15,11 +15,9 @@ class AuthorizationsController extends Controller
 {
     public function store(AuthorizationRequest $request)
     {
-        $username = $request->username;
+        $username = $request->phone;
 
-        filter_var($username, FILTER_VALIDATE_EMAIL) ?
-            $credentials['email'] = $username :
-            $credentials['phone'] = $username;
+        $credentials['phone'] = $username;
 
         $credentials['password'] = $request->password;
 
