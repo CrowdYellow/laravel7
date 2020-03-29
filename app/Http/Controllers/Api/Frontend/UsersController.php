@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\Frontend;
 
-use App\Http\Controllers\Api\Controller;
-use App\Http\Requests\Api\Frontend\UserRequest;
-use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\Api\Controller;
+use Illuminate\Auth\AuthenticationException;
+use App\Http\Requests\Api\Frontend\UserRequest;
 
 class UsersController extends Controller
 {
@@ -35,7 +35,16 @@ class UsersController extends Controller
         // 清除验证码缓存
         Cache::forget($request->verification_key);
 
-        $token = auth('api')->login($user);
+        return new UserResource($user);
+    }
+
+    public function update(UserRequest $request)
+    {
+        $user = $request->user();
+
+        $attributes = $request->only(['name', 'phone']);
+
+        $user->update($attributes);
 
         return new UserResource($user);
     }
