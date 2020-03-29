@@ -67,6 +67,9 @@ Route::prefix('v1/frontend')
                     // 上传图片
                     Route::post('images', 'ImagesController@store')
                         ->name('images.store');
+                    // 修改密码
+                    Route::patch('user/password', 'UsersController@updatePassword')
+                        ->name('user.password.update');
                     // 发布话题
                     Route::resource('topics', 'TopicsController')->only([
                         'store', 'update', 'destroy'

@@ -33,6 +33,12 @@ class UserRequest extends FormRequest
                     ],
                 ];
                 break;
+            case 'updatePassword':
+                return [
+                    'old_password' => 'required|alpha_dash|min:6',
+                    'password'     => 'required|confirmed|alpha_dash|min:6',
+                ];
+                break;
         }
     }
 

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Api\Controller;
 use Illuminate\Auth\AuthenticationException;
 use App\Http\Requests\Api\Frontend\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -43,6 +44,20 @@ class UsersController extends Controller
         $user = $request->user();
 
         $attributes = $request->only(['name', 'phone']);
+
+        $user->update($attributes);
+
+        return new UserResource($user);
+    }
+
+    public function updatePassword(UserRequest $request)
+    {
+        $user = $request->user();
+        if (!Hash::check($request->old_password, $user->password)) {
+            throw new AuthenticationException('密码错误');
+        }
+
+        $attributes = $request->only(['password']);
 
         $user->update($attributes);
 
