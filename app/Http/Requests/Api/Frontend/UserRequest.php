@@ -26,11 +26,12 @@ class UserRequest extends FormRequest
                 $userId = auth('api')->id();
 
                 return [
-                    'name'  => 'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . $userId,
-                    'phone' => [
+                    'name'            => 'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . $userId,
+                    'phone'           => [
                         'regex:/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199)\d{8}$/',
                         'unique:users,phone,' . $userId,
                     ],
+                    'avatar_image_id' => 'exists:images,id,type,avatar,user_id,' . $userId,
                 ];
                 break;
             case 'updatePassword':

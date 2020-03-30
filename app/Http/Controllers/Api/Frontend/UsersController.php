@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Frontend;
 
+use App\Models\Images;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
@@ -44,6 +45,12 @@ class UsersController extends Controller
         $user = $request->user();
 
         $attributes = $request->only(['name', 'phone']);
+
+        if ($request->avatar_image_id) {
+            $image = Images::find($request->avatar_image_id);
+
+            $attributes['avatar'] = $image->path;
+        }
 
         $user->update($attributes);
 
